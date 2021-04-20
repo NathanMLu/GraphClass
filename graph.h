@@ -12,6 +12,7 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #include "queue.h"
 #include <string>
 #include <vector>
+#include <iostream>
 
 using std::string;
 using std::vector;
@@ -36,9 +37,8 @@ class graph{
         void bfs();
         void printVisualization();
         
-
-
-
-
+    private:
+        vector <linkedList> mygraph{GRAPH_SIZE}; // vector containing linkedList
+        int count;
 };
 #endif
