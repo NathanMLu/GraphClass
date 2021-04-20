@@ -65,7 +65,7 @@ bool linkedList::getNode(int id, Data* data){
             if(id == current->data.id){
                 data->id = current->data.id;
                 data->weight = current->data.weight;
-                data->data = current->data.data;
+                data->information = current->data.information;
                 success = true;
             }
             current = current->next;
@@ -137,7 +137,7 @@ void linkedList::addTail(int id, string& data, int weight, Node* current){
     Node *temp;
     temp = new Node;
     temp->data.id = id;
-    temp->data.data = data;
+    temp->data.information = data;
     temp->data.weight = weight;
 
     temp->next = NULL;
@@ -148,7 +148,7 @@ void linkedList::addEmpty(int id, string &data, int weight){
     Node* temp;
     temp = new Node;
     temp->data.id = id;
-    temp->data.data = data;
+    temp->data.information = data;
     temp->data.weight = weight;
       
     temp->next = NULL;

@@ -12,7 +12,7 @@ using std::string;
 
 struct Data {
     int id;
-    string data;
+    string information;
     int weight;
 };
 
