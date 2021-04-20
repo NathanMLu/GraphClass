@@ -16,21 +16,18 @@ class linkedList{
     public:
         linkedList();
         ~linkedList();
-        bool addNode(int id, string& data); //adds node
+        bool addNode(int id, string& data, int weight); //adds node
         bool deleteNode(int id); //deletes node
-        bool getNode(int id, Data* data); //passes in string and id and 
-        void printList(bool backwards = false); //prints forwards or backwards based on bool
+        bool getNode(int id, Data* data);
+        void printList();
         int getCount(); //number of nodes in list
-        bool clearList(); //resets
-        bool exists(int id); //checks if id exists in list
+        bool clearList();
+        bool exists(int id);
 
     private:
-        void addHead(int id, string& data);
-        void addTail(int id, string& data, Node* current);
-        void addMiddle(int id, string& data, Node* current);
-        void addEmpty(int id, string& data); //if it is empty
+        void addTail(int id, string& data, int weight, Node* current);
+        void addEmpty(int id, string& data, int weight); 
         
-        void deleteHead(int id);
         void deleteTail(int id, Node* current);
         void deleteMiddle(int id, Node* current);
 
