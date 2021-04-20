@@ -24,11 +24,8 @@ class graph{
         graph();
         ~graph();
         bool addVertex(int id, string information, int weight, int id1, int id2); //vertex goes between id1 and id2
-        bool addVertex(int id, string information, int weight, int id1); //overloaded, only takes one id to add to the end
-        bool addVertex(int id, string information, int weight);
-        bool addEdge(int weight, int id1, string info1, int id2, string info2); //adds edge between id1 and id2
+        bool addEdge(int weight, int id1, string info1, int id2, string info2); //adds edge between id1 and id2, may create extra vertex
         bool removeVertex(int id);
-        bool removeVertex(int id1, int id2);
         bool removeEdge(int id1, int id2);
         bool isEmpty();
         int getVertexNum();
@@ -36,8 +33,11 @@ class graph{
         void dfs();
         void bfs();
         void printVisualization();
+        void clearGraph();
         
     private:
+        //WILL NEED PRIVATE OVERLOADS
+        bool createVertex(int id, string information, int weight);
         vector <linkedList> mygraph{GRAPH_SIZE}; // vector containing linkedList
         int count;
 };

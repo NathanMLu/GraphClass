@@ -5,3 +5,14 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 */
 
 #include "graph.h"
+
+graph::graph(){
+}
+
+graph::~graph(){
+    clearGraph();
+}
+
+bool graph::addVertex(int id, string information, int weight, int id1, int id2){
+    
+}
