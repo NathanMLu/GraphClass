@@ -10,14 +10,19 @@ graph::graph(){
 }
 
 graph::~graph(){
-    clearGraph();
+    //clearGraph();
 }
 
 bool graph::addVertex(int id, string information, int weight, int id1, int id2){
     bool added = false;
     if(weight>0 && id>0 && information.length() != 0){
+        cout << "failed";
         for(int i = 0; i<count; i++){
+            cout << "failed";
+            linkedList temp;
+            cout <<  " the count is" << temp.getCount();
             if(mygraph[i].getHeadId()==id1){
+                cout << "failed";
                 linkedList l;
                 Data temp;
                 mygraph[i].getNode(id1, &temp); // fill temp with data
@@ -33,6 +38,7 @@ bool graph::addVertex(int id, string information, int weight, int id1, int id2){
                     mygraph[i].deleteNode(id2); //remove existing connection
                 }
             } 
+            cout << "failed";
             if(mygraph[i].getHeadId()==id2 && id2 !=-1){//!= -1 IMPORTANT
                 linkedList j;
                 Data temp;
@@ -54,5 +60,7 @@ bool graph::addVertex(int id, string information, int weight, int id1, int id2){
     }
     return added;
 }
+
+
 
 

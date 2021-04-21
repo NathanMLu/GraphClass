@@ -5,3 +5,10 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 */
 
 #include "main.h"
+
+int main(){
+    graph g;
+    cout <<g.addVertex(5, "hello", 2, 4, 7);
+
+    return 0;
+}
