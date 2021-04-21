@@ -22,7 +22,7 @@ bool linkedList::addNode(int id, string& data, int weight){
     if(head == NULL){
         addEmpty(id, data, weight); 
         success = true;
-    } else if(id > 0 && data.size() != 0){ 
+    } else if(id > 0 && data.size() != 0 && weight>0){ 
         Node* current = head;
         while(current!=NULL && success == false && duplicate == false){
             if(id == current->data.id){
@@ -131,6 +131,9 @@ bool linkedList::exists(int id){
     return exists;
 }
 
+int linkedList::getHeadId(){
+    return head->data.id;
+}
 //PRIVATE METHODS BEGIN HERE
 
 void linkedList::addTail(int id, string& data, int weight, Node* current){

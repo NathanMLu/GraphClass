@@ -23,6 +23,7 @@ class linkedList{
         int getCount(); //number of nodes in list
         bool clearList();
         bool exists(int id);
+        int getHeadId();
 
     private:
         void addTail(int id, string& data, int weight, Node* current);
