@@ -9,11 +9,9 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 
 #include "data.h"
 
-#define QUEUE_SIZE 15
-
 class Queue{
     public:
-        Queue();
+        Queue(int size);
         ~Queue();
 
         bool push(int id, string info);
@@ -21,8 +19,9 @@ class Queue{
         bool peek(Data &queueData);
         bool isEmpty();
     private:
+        int queuesize;
         int top;
-        Data *myQueue[QUEUE_SIZE];
+        Data *myQueue = new Data[queuesize];
 };
 
 #endif

@@ -17,8 +17,6 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 using std::string;
 using std::vector;
 
-#define GRAPH_SIZE 15
-
 class graph{
     public:
         graph();
@@ -38,7 +36,7 @@ class graph{
     private:
         //WILL NEED PRIVATE OVERLOADS
         bool createVertex(int id, string information, int weight);
-        vector <linkedList> mygraph{GRAPH_SIZE}; // vector containing linkedList
+        vector <linkedList> mygraph; // vector containing linkedList
         int count;
 };
 #endif

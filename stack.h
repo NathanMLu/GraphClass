@@ -9,20 +9,19 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 
 #include "data.h"
 
-#define STACK_SIZE 15
 
 class Stack{
     public:
-        Stack();
+        Stack(int size);
         ~Stack();
-
         bool push(int id, string info);
         bool pop(Data &stackData);
         bool peek(Data &stackData);
         bool isEmpty();
     private:
+        int stacksize;
         int top; 
-        Data *myStack[STACK_SIZE];
+        Data *myStack = new Data[stacksize];
 };
 
 #endif
