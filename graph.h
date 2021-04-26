@@ -21,7 +21,8 @@ class graph{
     public:
         graph();
         ~graph();
-        bool addVertex(int id, string information, int weight, int id1, int id2); // pass in -1 for id2 if you only want one edge, replaces existing weight for both edges
+        bool addVertex(int id, string information, int weight, int id1, int id2); 
+        // pass in -1 for id2 if you only want one edge, weight is replaced
         bool addEdge(int weight, int id1, string info1, int id2, string info2); // adds edge between id1 and id2 if they exist, if not then creates vertex first
         bool removeVertex(int id);
         bool removeEdge(int id1, int id2);
