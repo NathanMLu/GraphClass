@@ -132,7 +132,6 @@ bool linkedList::exists(int id){
 }
 
 int linkedList::getHeadId(){
-
     int ret=-1;
     if(head != NULL){
         ret = head->data.id;

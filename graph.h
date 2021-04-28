@@ -36,8 +36,8 @@ class graph{
         
     private:
         //WILL NEED PRIVATE OVERLOADS
-        bool createVertex(int id, string information, int weight); // creates disconnected vertex
-        vector <linkedList> mygraph; // vector containing linkedList
+        bool createVertex(int id, string information, int weight);
+        vector <linkedList*> mygraph; // vector containing linkedList
         int count;
 };
 #endif
