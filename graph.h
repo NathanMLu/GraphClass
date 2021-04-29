@@ -20,10 +20,14 @@ using std::vector;
 class graph{
     public:
         graph();
+        //constructor
         ~graph();
-        bool addVertex(int id, string information, int weight, int id1, int id2); 
-        // pass in -1 for id2 if you only want one edge, weight is replaced
-        bool addEdge(int weight, int id1, string info1, int id2, string info2); // adds edge between id1 and id2 if they exist, if not then creates vertex first
+        //destructor
+        bool addVertex(int weight, int id, string info, int id1, int id2); 
+        // adds vertex between two vertices, if id2 is set to -1, creates single vertex with one link to id1 vertex. 
+        // does not remove connection between existing ids
+        bool addEdge(int weight, int id1, string info1, int id2, string info2); 
+        // creates edge between two id's if they exist, if they dont exist creates vertices first then links them.
         bool removeVertex(int id);
         bool removeEdge(int id1, int id2);
         bool isEmpty();
