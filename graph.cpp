@@ -52,8 +52,8 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
                             (*temp1).addNode(temp.id, temp.information, temp.weight); //add connection
                             mygraph.push_back(temp2); //connects to graph
                             (*mygraph[i]).addNode(id, info, weight);
-                            pos1 = i;
                         }
+                        pos1 = i;
                     } if((*mygraph[i]).getHeadId()==id2 && id2 !=-1){
                         (*mygraph[i]).getNode(id2, &temp); // collecting data
                         if(pos1 != -1){
@@ -64,8 +64,8 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
                             (*temp2).addNode(temp.id, temp.information, temp.weight); //add connection
                             mygraph.push_back(temp2); //connects to graph
                             (*mygraph[i]).addNode(id, info, weight);
-                            pos2 = i;
                         }
+                        pos2 = i;
                     }
                 }
             }
