@@ -29,8 +29,10 @@ class graph{
         bool addEdge(int weight, int id1, string info1, int id2, string info2); 
         // creates edge between two id's if they exist, if they dont exist creates vertices first then links them.
         bool removeVertex(int id);
+        // removes a given vertex id and all conections to it (may make the graph disconnected)
         bool removeEdge(int id1, int id2);
         bool isEmpty();
+        bool exists(int id);
         int getVertexNum();
         int getEdgeNum();
         void dfs();
@@ -42,6 +44,6 @@ class graph{
         //WILL NEED PRIVATE OVERLOADS
         bool createVertex(int id, string information, int weight);
         vector <linkedList*> mygraph; // vector containing linkedList
-        int count;
+        int count;//remove count later?????
 };
 #endif

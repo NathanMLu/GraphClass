@@ -122,6 +122,29 @@ bool graph::removeVertex(int id){
     return removed;
 }
 
+bool graph::removeEdge(int id1, int id2){
+    bool removed = false;
+    int pos1 = -1;
+    int pos2 = -1;
+    for(int i = 0; i<mygraph.size(); i++){
+        if((*mygraph[i]).getHeadId()==id1){
+            pos1 = i;
+        } if ((*mygraph[i]).getHeadId()==id2){
+            pos2 = i;
+        }
+    }
+    if(pos1 != -1 && pos2 != -1 && pos1 != pos2){
+        (*mygraph[pos1]).deleteNode(id2);
+        (*mygraph[pos2]).deleteNode(id1);
+        removed = true;
+    }
+    return removed;
+}
+
+
+
+
+
 void graph:: dfs(){
     for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
