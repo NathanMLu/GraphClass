@@ -107,19 +107,18 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
 }
 
 bool graph::removeVertex(int id){
-    cout << "hi?";
     bool removed = false;
     for(int i = 0; i<mygraph.size(); i++){
         if((*mygraph[i]).getHeadId()==id){
-            cout << "came in here";
             (*mygraph[i]).clearList(); //sets it to null
             mygraph.erase(mygraph.begin()+i); //removes from vector
             count--;
             removed = true;
         }
+        if((*mygraph[i]).exists(id)){
+            (*mygraph[i]).deleteNode(id);
+        }  
     }
-    count ++;
-    count--;
     return removed;
 }
 
