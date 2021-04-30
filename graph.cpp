@@ -67,13 +67,14 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
     int pos1 = -1;
     int pos2 = -1;
     bool found = false;
+    bool duplicate = false;
     linkedList *temp1 = new linkedList();
     linkedList *temp2 = new linkedList();
     if(weight>0 && (id1 && id2 >0) && (info1.size() && info2.size()!=0)){ //validates data
-        for(int i = 0; i<mygraph.size(); i++){ //traverses the vector and checks head
-            if((*mygraph[i]).getHeadId()==id1){ // if the data exists
+        for(int i = 0; i<mygraph.size(); i++){
+            if((*mygraph[i]).getHeadId()==id1){
                 pos1 = i;
-            } else if((*mygraph[i]).getHeadId()==id2){ // if the data exists
+            } if((*mygraph[i]).getHeadId()==id2){
                 pos2 = i;
             } 
         }
@@ -96,21 +97,36 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
             }
         }      
     }
-    if(pos1 != -1 && pos2 != -1){//create connection
-        (*mygraph[pos1]).addNode(id2, info2, weight);
-        (*mygraph[pos2]).addNode(id1, info1, weight);
-        found = true;
-        count++;
+    if(pos1 != -1 && pos2 != -1 && pos1!=pos2){
+        if((*mygraph[pos1]).addNode(id2, info2, weight)&&(*mygraph[pos2]).addNode(id1, info1, weight)){ // creates connection
+            found = true;
+            count++;
+        }
     }
     return found;
 }
 
+bool graph::removeVertex(int id){
+    cout << "hi?";
+    bool removed = false;
+    for(int i = 0; i<mygraph.size(); i++){
+        if((*mygraph[i]).getHeadId()==id){
+            cout << "came in here";
+            (*mygraph[i]).clearList(); //sets it to null
+            mygraph.erase(mygraph.begin()+i); //removes from vector
+            count--;
+            removed = true;
+        }
+    }
 
+    return removed;
+}
 
 void graph:: dfs(){
     for(int i = 0; i<mygraph.size(); i++){
+        cout << endl;
         (*mygraph[i]).printList();
-        cout << "printed";
+        cout << endl;
     }
 }
 
