@@ -16,64 +16,48 @@ graph::~graph(){
 
 
 bool graph::addVertex(int weight, int id, string info, int id1, int id2){
-    //NEED TO CHECK FOR DUPLICATES
     int pos1 = -1;
     int pos2 = -1;
     bool success = false;
-    linkedList *temp1 = new linkedList();
-    linkedList *temp2 = new linkedList();
-    Data temp;
+    bool duplicate = false;
+    linkedList *temp = new linkedList();
+    Data storage1;
+    Data storage2;
     if(weight>0 && id>0 && info.size() != 0){
         if(mygraph.size() == 0){ //if its empty then create unlinked vertex, ignore id1 and id2
-            cout << "empty filled first " << endl;
-            (*temp1).addNode(id, info, weight);
-            mygraph.push_back(temp1);
+            (*temp).addNode(id, info, weight);
+            mygraph.push_back(temp);
             success = true;
             count++;
         } else { // if not then link the two vertices
             for(int i = 0; i<mygraph.size(); i++){
-                if(id2 == -1 && (*mygraph[i]).getHeadId() == id1){
-                    cout << "id was -1 so created blank" << endl;
-                    (*mygraph[i]).getNode(id1, &temp); // collecting data
-                    (*temp2).addNode(id, info, weight); //adds head data
-                    (*temp2).addNode(temp.id, temp.information, temp.weight); //add connection
-                    mygraph.push_back(temp2);
-                    (*mygraph[i]).addNode(id, info, weight);
-                    success = true;
-                    count++;
-                } else {
-                    if((*mygraph[i]).getHeadId()==id1){
-                        (*mygraph[i]).getNode(id1, &temp); // collecting data
-                        if(pos2 != -1){
-                            (*mygraph[pos2]).addNode(temp.id, temp.information, temp.weight);
-                            (*mygraph[i]).addNode(id, info, weight);
-                        } else {
-                            (*temp1).addNode(id, info, weight); //adds head data
-                            (*temp1).addNode(temp.id, temp.information, temp.weight); //add connection
-                            mygraph.push_back(temp2); //connects to graph
-                            (*mygraph[i]).addNode(id, info, weight);
-                        }
-                        pos1 = i;
-                    } if((*mygraph[i]).getHeadId()==id2 && id2 !=-1){
-                        (*mygraph[i]).getNode(id2, &temp); // collecting data
-                        if(pos1 != -1){
-                            (*mygraph[pos1]).addNode(temp.id, temp.information, temp.weight);
-                            (*mygraph[i]).addNode(id, info, weight);
-                        } else {
-                            (*temp2).addNode(id, info, weight); //adds head data
-                            (*temp2).addNode(temp.id, temp.information, temp.weight); //add connection
-                            mygraph.push_back(temp2); //connects to graph
-                            (*mygraph[i]).addNode(id, info, weight);
-                        }
-                        pos2 = i;
-                    }
+                if((*mygraph[i]).exists(id)){
+                    duplicate = true;
+                } else if((*mygraph[i]).getHeadId()==id1){
+                    pos1 = i;
+                } else if((*mygraph[i]).getHeadId()==id2 && id2 !=-1){   
+                    pos2 = i;
                 }
             }
         }
-        if(pos1 != -1 && pos2 != -1){ 
+        if(pos1!=-1 && pos2!=-1 && duplicate == false){
+            (*temp).addNode(id, info, weight); //adds head data
+            (*mygraph[pos1]).getNode(id1, &storage1);
+            (*temp).addNode(storage1.id, storage1.information, storage1.weight);
+            (*mygraph[pos2]).getNode(id2, &storage2);
+            (*temp).addNode(storage2.id, storage2.information, storage2.weight);
+            mygraph.push_back(temp); //connects to graph
             success = true;
             count++;
-        }   
+        } else if(id2 == -1 && pos1 != -1 && duplicate == false){
+            (*mygraph[pos1]).getNode(id1, &storage1); // collecting data
+            (*temp).addNode(id, info, weight); //adds head data
+            (*temp).addNode(storage1.id, storage1.information, storage1.weight); //add connection
+            mygraph.push_back(temp);
+            (*mygraph[pos1]).addNode(id, info, weight);
+            success = true;
+            count++;
+        }  
     }
     return success;
 }

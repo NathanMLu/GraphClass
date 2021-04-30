@@ -60,6 +60,10 @@ bool linkedList::deleteNode(int id){
 bool linkedList::getNode(int id, Data* data){
     bool success = false;
     if(head!=NULL){
+        //clear the data
+        data->id = -1;
+        data->weight = -1;
+        data->information = "";
         Node* current = head;
         while(current!=NULL){
             if(id == current->data.id){
