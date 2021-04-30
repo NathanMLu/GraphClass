@@ -118,7 +118,8 @@ bool graph::removeVertex(int id){
             removed = true;
         }
     }
-
+    count ++;
+    count--;
     return removed;
 }
 
