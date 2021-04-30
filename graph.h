@@ -44,6 +44,5 @@ class graph{
         //WILL NEED PRIVATE OVERLOADS
         bool createVertex(int id, string information, int weight);
         vector <linkedList*> mygraph; // vector containing linkedList
-        int count;//remove count later?????
 };
 #endif

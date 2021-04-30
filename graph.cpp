@@ -7,7 +7,6 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #include "graph.h"
 
 graph::graph(){
-    count = 0;
 }
 
 graph::~graph(){
@@ -28,7 +27,6 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             (*temp).addNode(id, info, weight);
             mygraph.push_back(temp);
             success = true;
-            count++;
         } else { // if not then link the two vertices
             for(int i = 0; i<mygraph.size(); i++){
                 if((*mygraph[i]).exists(id)){
@@ -48,7 +46,6 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             (*temp).addNode(storage2.id, storage2.information, storage2.weight);
             mygraph.push_back(temp); //connects to graph
             success = true;
-            count++;
         } else if(id2 == -1 && pos1 != -1 && duplicate == false){
             (*mygraph[pos1]).getNode(id1, &storage1); // collecting data
             (*temp).addNode(id, info, weight); //adds head data
@@ -56,7 +53,6 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             mygraph.push_back(temp);
             (*mygraph[pos1]).addNode(id, info, weight);
             success = true;
-            count++;
         }  
     }
     return success;
@@ -100,7 +96,6 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
     if(pos1 != -1 && pos2 != -1 && pos1!=pos2){
         if((*mygraph[pos1]).addNode(id2, info2, weight)&&(*mygraph[pos2]).addNode(id1, info1, weight)){ // creates connection
             found = true;
-            count++;
         }
     }
     return found;
@@ -112,7 +107,6 @@ bool graph::removeVertex(int id){
         if((*mygraph[i]).getHeadId()==id){
             (*mygraph[i]).clearList(); //sets it to null
             mygraph.erase(mygraph.begin()+i); //removes from vector
-            count--;
             removed = true;
         }
         if((*mygraph[i]).exists(id)){
