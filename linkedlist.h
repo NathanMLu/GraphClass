@@ -29,8 +29,8 @@ class linkedList{
         void addTail(int id, string& data, int weight, Node* current);
         void addEmpty(int id, string& data, int weight); 
         
-        void deleteTail(int id, Node* current);
-        void deleteMiddle(int id, Node* current);
+        void deleteTail(Node* current);
+        void deleteMiddle(Node* current);
 
         Node *head;
 };

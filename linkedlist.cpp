@@ -38,16 +38,18 @@ bool linkedList::addNode(int id, string& data, int weight){
 }
 
 bool linkedList::deleteNode(int id){
-    bool success = false;
+    bool success = false; // this has been modified so that head cannot be removed
     if(head != NULL){
         Node* current = head;
-        while(current!=NULL){
+        while(current!=NULL && current->next!=NULL){
             if(id == current->next->data.id){ //this avoids deleting the head
-                if(current->next==NULL){
-                    deleteTail(id, current);
+                if(id == head->data.id){
+                    success = false;
+                } else if(current->next->next==NULL && id == current->next->data.id){
+                    deleteTail(current);
                     success = true;
-                } else {
-                    deleteMiddle(id, current);
+                } else if(id == current->next->data.id){
+                    deleteMiddle(current);
                     success = true;
                 }
             }
@@ -167,12 +169,15 @@ void linkedList::addEmpty(int id, string &data, int weight){
     head = temp;
 }
 
-void linkedList::deleteTail(int id, Node* current){
-    delete (current->next);
+void linkedList::deleteTail(Node* current){
+    Node* temp;
+    temp = new Node;
+    temp = current->next;
+    delete temp;
     current->next = NULL;
 }
 
-void linkedList::deleteMiddle(int id, Node* current){
+void linkedList::deleteMiddle(Node* current){
     Node* temp;
     temp = new Node;
     temp = current->next;
