@@ -19,7 +19,7 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
     int pos2 = -1;
     bool success = false;
     bool duplicate = false;
-    linkedList *temp = new linkedList();
+    linkedList *temp = new linkedList;
     Data storage1;
     Data storage2;
     if(weight>0 && id>0 && info.size() != 0){
@@ -55,6 +55,9 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             success = true;
         }  
     }
+    temp = NULL;
+    delete temp;
+    
     return success;
 }
 
@@ -64,8 +67,8 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
     int pos2 = -1;
     bool found = false;
     bool duplicate = false;
-    linkedList *temp1 = new linkedList();
-    linkedList *temp2 = new linkedList();
+    linkedList *temp1 = new linkedList;
+    linkedList *temp2 = new linkedList;
     if(weight>0 && (id1 && id2 >0) && (info1.size() && info2.size()!=0)){ //validates data
         for(int i = 0; i<mygraph.size(); i++){
             if((*mygraph[i]).getHeadId()==id1){
@@ -98,6 +101,11 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
             found = true;
         }
     }
+    temp1 = NULL;
+    delete temp1;
+    temp2 = NULL;
+    delete temp2;
+
     return found;
 }
 
@@ -140,7 +148,8 @@ bool graph::removeEdge(int id1, int id2){
 
 
 void graph:: dfs(){
-    for(int i = 0; i<mygraph.size(); i++){
+    cout << "STARTING TO PRINT!!!" << endl;
+    for(int i = 0; i<mygraph.size()-1; i++){
         cout << endl;
         (*mygraph[i]).printList();
         cout << endl;

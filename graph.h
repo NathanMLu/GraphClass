@@ -31,6 +31,7 @@ class graph{
         bool removeVertex(int id);
         // removes a given vertex id and all conections to it (may make the graph disconnected)
         bool removeEdge(int id1, int id2);
+        // removes an edge between two valid id's
         bool isEmpty();
         bool exists(int id);
         int getVertexNum();
@@ -41,7 +42,6 @@ class graph{
         void clearGraph();
         
     private:
-        //WILL NEED PRIVATE OVERLOADS
         bool createVertex(int id, string information, int weight);
         vector <linkedList*> mygraph; // vector containing linkedList
 };

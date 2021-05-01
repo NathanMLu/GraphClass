@@ -13,12 +13,12 @@ int main(){
     cout <<g.addEdge(5, 19, s, 4, d)<<endl;
     cout <<g.addEdge(17, 100, s, 3, d)<<endl;
     cout <<g.addEdge(17, 3, s, 2, d)<<endl;
-    cout <<g.addEdge(17, 2, s, 2, d)<<endl;
+    //cout <<g.addEdge(17, 2, s, 2, d)<<endl;
     cout <<g.addEdge(17, 2, s, 19, d)<<endl;
     cout <<g.addEdge(17, 2, s, 4, d)<<endl;
     cout <<g.addVertex(6, 20, s, 4, -1)<<endl;
-    cout << g.removeVertex(3)<<endl;
-    cout << g.removeEdge(2,19)<<endl;
+    //cout << g.removeVertex(3)<<endl;
+    //cout << g.removeEdge(2,159)<<endl;
     
     
     g.dfs();
