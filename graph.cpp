@@ -19,12 +19,12 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
     int pos2 = -1;
     bool success = false;
     bool duplicate = false;
-    linkedList *temp = new linkedList;
+    linkedList *temp = new linkedList();
     Data storage1;
     Data storage2;
     if(weight>0 && id>0 && info.size() != 0){
         if(mygraph.size() == 0){ //if its empty then create unlinked vertex, ignore id1 and id2
-            (*temp).addNode(id, info, weight);
+            temp->addNode(id, info, weight);
             mygraph.push_back(temp);
             success = true;
         } else { // if not then link the two vertices
@@ -39,25 +39,23 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             }
         }
         if(pos1!=-1 && pos2!=-1 && duplicate == false){
-            (*temp).addNode(id, info, weight); //adds head data
+            temp->addNode(id, info, weight); //adds head data
             (*mygraph[pos1]).getNode(id1, &storage1);
-            (*temp).addNode(storage1.id, storage1.information, storage1.weight);
+            temp->addNode(storage1.id, storage1.information, storage1.weight);
             (*mygraph[pos2]).getNode(id2, &storage2);
-            (*temp).addNode(storage2.id, storage2.information, storage2.weight);
+            temp->addNode(storage2.id, storage2.information, storage2.weight);
             mygraph.push_back(temp); //connects to graph
             success = true;
         } else if(id2 == -1 && pos1 != -1 && duplicate == false){
             (*mygraph[pos1]).getNode(id1, &storage1); // collecting data
-            (*temp).addNode(id, info, weight); //adds head data
-            (*temp).addNode(storage1.id, storage1.information, storage1.weight); //add connection
+            temp->addNode(id, info, weight); //adds head data
+            temp->addNode(storage1.id, storage1.information, storage1.weight); //add connection
             mygraph.push_back(temp);
             (*mygraph[pos1]).addNode(id, info, weight);
             success = true;
         }  
     }
-    temp = NULL;
     delete temp;
-    
     return success;
 }
 
@@ -67,8 +65,8 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
     int pos2 = -1;
     bool found = false;
     bool duplicate = false;
-    linkedList *temp1 = new linkedList;
-    linkedList *temp2 = new linkedList;
+    linkedList *temp1 = new linkedList();
+    linkedList *temp2 = new linkedList();
     if(weight>0 && (id1 && id2 >0) && (info1.size() && info2.size()!=0)){ //validates data
         for(int i = 0; i<mygraph.size(); i++){
             if((*mygraph[i]).getHeadId()==id1){
@@ -78,19 +76,19 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
             } 
         }
         if(pos1 ==-1 && pos2 == -1){ // couldn't find either one
-            (*temp1).addNode(id1, info1, weight);
-            (*temp2).addNode(id2, info2, weight);
+            temp1->addNode(id1, info1, weight);
+            temp2->addNode(id2, info2, weight);
             mygraph.push_back(temp1);
             mygraph.push_back(temp2);
             pos1 = mygraph.size()-2;
             pos2 = mygraph.size()-1;
         } else if (pos1 == -1){ // couldn't find id1
-            if((*temp1).addNode(id1, info1, weight)){
+            if(temp1->addNode(id1, info1, weight)){
                 mygraph.push_back(temp1);
                 pos1 = mygraph.size()-1;
             }
         } else if (pos2 == -1){ // couldn't find id2
-            if((*temp1).addNode(id2, info2, weight)){
+            if(temp1->addNode(id2, info2, weight)){
                 mygraph.push_back(temp1);
                 pos2 = mygraph.size()-1;
             }
@@ -101,11 +99,8 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
             found = true;
         }
     }
-    temp1 = NULL;
-    delete temp1;
-    temp2 = NULL;
-    delete temp2;
-
+    return temp1;
+    return temp2;
     return found;
 }
 
@@ -148,8 +143,7 @@ bool graph::removeEdge(int id1, int id2){
 
 
 void graph:: dfs(){
-    cout << "STARTING TO PRINT!!!" << endl;
-    for(int i = 0; i<mygraph.size()-1; i++){
+    for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
         (*mygraph[i]).printList();
         cout << endl;
