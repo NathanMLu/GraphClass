@@ -105,13 +105,13 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
 bool graph::removeVertex(int id){
     bool removed = false;
     for(int i = 0; i<mygraph.size(); i++){
-        if((*mygraph[i]).getHeadId()==id){
-            (*mygraph[i]).clearList(); //sets it to null
+        if(mygraph[i]->getHeadId()==id){
+            mygraph[i]->clearList(); //sets it to null
             mygraph.erase(mygraph.begin()+i); //removes from vector
             removed = true;
         }
-        if((*mygraph[i]).exists(id)){
-            (*mygraph[i]).deleteNode(id);
+        if(mygraph[i]->exists(id)){
+            mygraph[i]->deleteNode(id);
         }  
     }
     return removed;
@@ -122,15 +122,15 @@ bool graph::removeEdge(int id1, int id2){
     int pos1 = -1;
     int pos2 = -1;
     for(int i = 0; i<mygraph.size(); i++){
-        if((*mygraph[i]).getHeadId()==id1){
+        if(mygraph[i]->getHeadId()==id1){
             pos1 = i;
-        } if ((*mygraph[i]).getHeadId()==id2){
+        } if (mygraph[i]->getHeadId()==id2){
             pos2 = i;
         }
     }
     if(pos1 != -1 && pos2 != -1 && pos1 != pos2){
-        (*mygraph[pos1]).deleteNode(id2);
-        (*mygraph[pos2]).deleteNode(id1);
+        mygraph[pos1]->deleteNode(id2);
+        mygraph[pos2]->deleteNode(id1);
         removed = true;
     }
     return removed;
@@ -144,7 +144,14 @@ bool graph::isEmpty(){
     return empty;
 }
 
+bool graph::exists(int id){
+    bool exist = false;
+    for(int i= 0; i <mygraph.size(); i++){
+        //if(mygraph[i])
+    }
+    return exist;
 
+}
 
 void graph:: dfs(){
     for(int i = 0; i<mygraph.size(); i++){
