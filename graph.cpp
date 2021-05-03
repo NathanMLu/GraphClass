@@ -38,23 +38,26 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
                 }
             }
         }
-        if(pos1!=-1 && pos2!=-1 && duplicate == false){
-            temp->addNode(id, info, weight); //adds head data
+
+        if(id2 == -1 && pos1 != -1 && duplicate == false){
             mygraph[pos1]->getNode(id1, &storage1);
+            temp->addNode(id, info, weight);
             temp->addNode(storage1.id, storage1.information, storage1.weight);
-            mygraph[pos2]->getNode(id2, &storage2);
-            temp->addNode(storage2.id, storage2.information, storage2.weight);
-            mygraph.push_back(temp); //connects to graph
-            success = true;
-        } else if(id2 == -1 && pos1 != -1 && duplicate == false){
-            mygraph[pos1]->getNode(id1, &storage1); // collecting data
-            temp->addNode(id, info, weight); //adds head data
-            temp->addNode(storage1.id, storage1.information, storage1.weight); //add connection
             
             mygraph.push_back(temp);
             mygraph[pos1]->addNode(id, info, weight);
             success = true;
-        }  
+        } else if(pos1!=-1 && pos2!=-1 && duplicate == false){
+            temp->addNode(id, info, weight);
+            mygraph[pos1]->getNode(id1, &storage1);
+            temp->addNode(storage1.id, storage1.information, storage1.weight);
+            mygraph[pos2]->getNode(id2, &storage2);
+            temp->addNode(storage2.id, storage2.information, storage2.weight);
+            mygraph.push_back(temp);
+            mygraph[pos2]->addNode(id, info, weight);
+            mygraph[pos1]->addNode(id, info, weight);
+            success = true;
+        }
     }
     return success;
 }

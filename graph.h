@@ -33,7 +33,9 @@ class graph{
         bool removeEdge(int id1, int id2);
         // removes an edge between two valid id's
         bool isEmpty();
+        // returns true if graph is empty
         bool exists(int id);
+        // checks if an id exists
         int getVertexNum();
         int getEdgeNum();
         void dfs();
