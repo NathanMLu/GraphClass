@@ -29,33 +29,33 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             success = true;
         } else { // if not then link the two vertices
             for(int i = 0; i<mygraph.size(); i++){
-                if((*mygraph[i]).exists(id)){
+                if(mygraph[i]->exists(id)){
                     duplicate = true;
-                } else if((*mygraph[i]).getHeadId()==id1){
+                } else if(mygraph[i]->getHeadId()==id1){
                     pos1 = i;
-                } else if((*mygraph[i]).getHeadId()==id2 && id2 !=-1){   
+                } else if(mygraph[i]->getHeadId()==id2 && id2 !=-1){   
                     pos2 = i;
                 }
             }
         }
         if(pos1!=-1 && pos2!=-1 && duplicate == false){
             temp->addNode(id, info, weight); //adds head data
-            (*mygraph[pos1]).getNode(id1, &storage1);
+            mygraph[pos1]->getNode(id1, &storage1);
             temp->addNode(storage1.id, storage1.information, storage1.weight);
-            (*mygraph[pos2]).getNode(id2, &storage2);
+            mygraph[pos2]->getNode(id2, &storage2);
             temp->addNode(storage2.id, storage2.information, storage2.weight);
             mygraph.push_back(temp); //connects to graph
             success = true;
         } else if(id2 == -1 && pos1 != -1 && duplicate == false){
-            (*mygraph[pos1]).getNode(id1, &storage1); // collecting data
+            mygraph[pos1]->getNode(id1, &storage1); // collecting data
             temp->addNode(id, info, weight); //adds head data
             temp->addNode(storage1.id, storage1.information, storage1.weight); //add connection
+            
             mygraph.push_back(temp);
-            (*mygraph[pos1]).addNode(id, info, weight);
+            mygraph[pos1]->addNode(id, info, weight);
             success = true;
         }  
     }
-    delete temp;
     return success;
 }
 
@@ -69,9 +69,9 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
     linkedList *temp2 = new linkedList();
     if(weight>0 && (id1 && id2 >0) && (info1.size() && info2.size()!=0)){ //validates data
         for(int i = 0; i<mygraph.size(); i++){
-            if((*mygraph[i]).getHeadId()==id1){
+            if(mygraph[i]->getHeadId()==id1){
                 pos1 = i;
-            } if((*mygraph[i]).getHeadId()==id2){
+            } if(mygraph[i]->getHeadId()==id2){
                 pos2 = i;
             } 
         }
@@ -95,12 +95,10 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
         }      
     }
     if(pos1 != -1 && pos2 != -1 && pos1!=pos2){
-        if((*mygraph[pos1]).addNode(id2, info2, weight)&&(*mygraph[pos2]).addNode(id1, info1, weight)){ // creates connection
+        if(mygraph[pos1]->addNode(id2, info2, weight)&&mygraph[pos2]->addNode(id1, info1, weight)){ // creates connection
             found = true;
         }
     }
-    return temp1;
-    return temp2;
     return found;
 }
 
@@ -138,14 +136,18 @@ bool graph::removeEdge(int id1, int id2){
     return removed;
 }
 
-
+bool graph::isEmpty(){
+    bool empty = false;
+    //if()
+    return empty;
+}
 
 
 
 void graph:: dfs(){
     for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
-        (*mygraph[i]).printList();
+        mygraph[i]->printList();
         cout << endl;
     }
 }
