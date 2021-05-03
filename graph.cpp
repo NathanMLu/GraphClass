@@ -138,7 +138,9 @@ bool graph::removeEdge(int id1, int id2){
 
 bool graph::isEmpty(){
     bool empty = false;
-    //if()
+    if(mygraph.size()==0){
+        empty = true;
+    }
     return empty;
 }
 
