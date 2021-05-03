@@ -24,6 +24,7 @@ class linkedList{
         bool clearList();
         bool exists(int id);
         int getHeadId();
+        int getNodeId(int pos);
 
     private:
         void addTail(int id, string& data, int weight, Node* current);
