@@ -12,6 +12,7 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #include <stdlib.h>
 #include <time.h>
 #include "graph.h"
+#include "functions.h"
 
 using std::cout;
 using std::endl;

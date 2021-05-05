@@ -8,8 +8,6 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #define GRAPH_H
 
 #include "linkedlist.h"
-#include "stack.h"
-#include "queue.h"
 #include <string>
 #include <vector>
 #include <iostream>
