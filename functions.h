@@ -18,6 +18,7 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 using std::cout;
 using std::endl;
 
-void makeTestCases(int *ids, char** data, int size);
-void displayTestCases(int *ids, char** data, int size);
+void makeTestCases(int *ids, int* weights, char** data, int size);
+void displayTestCases(int *ids, int* weights, char** data, int size);
+
 #endif
