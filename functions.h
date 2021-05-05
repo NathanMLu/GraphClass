@@ -13,7 +13,7 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #include "data.h"
 
 #define MAX_ID 1000
-#define BUFFER 16
+#define BUFFER 16 //marks the length of the string generated
 
 using std::cout;
 using std::endl;
