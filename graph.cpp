@@ -22,7 +22,7 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
     linkedList *temp = new linkedList();
     Data storage1;
     Data storage2;
-    if(weight>0 && id>0 && info.size() != 0){
+    if(weight>0 && id>0 && info.size() != 0 &&id1!=id2){
         if(mygraph.size() == 0){ //if its empty then create unlinked vertex, ignore id1 and id2
             temp->addNode(id, info, weight);
             mygraph.push_back(temp);
@@ -70,7 +70,7 @@ bool graph::addEdge(int weight, int id1, string info1, int id2, string info2){
     bool duplicate = false;
     linkedList *temp1 = new linkedList();
     linkedList *temp2 = new linkedList();
-    if(weight>0 && (id1 && id2 >0) && (info1.size() && info2.size()!=0)){ //validates data
+    if(weight>0 && (id1 && id2 >0) && (info1.size() && info2.size()!=0)&&id1!=id2){ //validates data
         for(int i = 0; i<mygraph.size(); i++){
             if(mygraph[i]->getHeadId()==id1){
                 pos1 = i;
@@ -238,12 +238,51 @@ void graph::bfs(int id){
     }
 }
 
-void graph:: printVisualization(){
+void graph::printVisualization(){
+    int id = -1;
+    if(mygraph.size()!=0){
+        id = mygraph[0]->getNodeId(0);
+    }
+    bool found = false;
+    bool visited [mygraph.size()];
+    Data storage;
+    int store = id;
+    stack <int> myStack;
+
+
+    bool first = true;
+
+    for(int i = 0; i<mygraph.size(); i++){
+        visited[i] = false;
+        if(mygraph[i]->getHeadId() == store){
+            mygraph[i]->getNode(store, &storage);
+            found = true;
+        }
+    }
+    if(found == true){
+        myStack.push(storage.id); //adding the first data
+        while(!myStack.empty()){
+            store = myStack.top();
+            myStack.pop();
+            if(visited[getPos(store)] == false){
+                cout << store << "--";
+                visited[getPos(store)] = true;
+            }
+            for(int i = 0 ; i<=(mygraph[getPos(store)]->getCount())-1; i++){
+                id = mygraph[getPos(store)]->getNodeId(i);//stores the id of the index given (i)
+                if(visited[getPos(id)]==false){
+                    myStack.push(id);
+                }
+            }
+        }
+    }
+    /*
     for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
         mygraph[i]->printList();
         cout << endl;
     }
+    */
 }
 
 void graph::clearGraph(){
