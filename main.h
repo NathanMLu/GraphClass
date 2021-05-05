@@ -14,6 +14,9 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #include "graph.h"
 #include "functions.h"
 
+#define TESTCASEMIN 10
+#define TESTCASEOFFSET 5
+
 using std::cout;
 using std::endl;
 using std::string;
