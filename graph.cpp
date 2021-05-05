@@ -6,11 +6,6 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 
 #include "graph.h"
 
-
-#include <stack>
-
-using std::stack;
-
 graph::graph(){
 }
 
@@ -34,7 +29,7 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
             success = true;
         } else { // if not then link the two vertices
             for(int i = 0; i<mygraph.size(); i++){
-                if(mygraph[i]->exists(id)){
+                if(mygraph[i]->exists(id)){  
                     duplicate = true;
                 } else if(mygraph[i]->getHeadId()==id1){
                     pos1 = i;
@@ -197,6 +192,38 @@ void graph::dfs(int id){
     }
 }
 
+void graph::bfs(int id){
+    bool found = false;
+    bool visited [mygraph.size()];
+    Data storage;
+    int store = id;
+    queue <int> myQueue;
+
+    for(int i = 0; i<mygraph.size(); i++){
+        visited[i] = false;
+        if(mygraph[i]->getHeadId() == store){
+            mygraph[i]->getNode(store, &storage);
+            found = true;
+        }
+    }
+    if(found == true){
+        myQueue.push(storage.id); //adding the first data
+        while(!myQueue.empty()){
+            store = myQueue.front();
+            myQueue.pop();
+            if(visited[getPos(store)] == false){
+                cout << store << " ";
+                visited[getPos(store)] = true;
+            }
+            for(int i = 0 ; i<=(mygraph[getPos(store)]->getCount())-1; i++){
+                id = mygraph[getPos(store)]->getNodeId(i);//stores the id of the index given (i)
+                if(visited[getPos(id)]==false){
+                    myQueue.push(id);
+                }
+            }
+        }
+    }
+}
 
 void graph:: printVisualization(){
     for(int i = 0; i<mygraph.size(); i++){
