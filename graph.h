@@ -41,16 +41,20 @@ class graph{
         bool exists(int id);
         // checks if an id exists
         int getVertexNum();
+        // returns number of vertices
         int getEdgeNum();
+        //returns number of edges
         void dfs(int id);
         //dfs with picking the higher id
         void bfs(int id);
         //bfs picking the lower id
         void printVisualization();
+        //prints visualization of the linkedLists
         void clearGraph();
+        //clears the graph
         
     private:
-        int getPos(int id);
+        int getPos(int id); //private function to getPosition of id
         vector <linkedList*> mygraph; // vector containing linkedList
 };
 #endif

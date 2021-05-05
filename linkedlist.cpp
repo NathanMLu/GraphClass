@@ -33,6 +33,7 @@ bool linkedList::addNode(int id, string& data, int weight){ //adds smallest to l
                     success = true;
                 } else if(id<current->next->data.id && current == head){
                     addMiddle(id, data, weight, current);
+                    success = true;
                 }
             } else if(current->next==NULL){
                 addTail(id, data, weight, current);

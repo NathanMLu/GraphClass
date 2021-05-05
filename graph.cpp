@@ -158,6 +158,19 @@ bool graph::exists(int id){
 
 }
 
+int graph::getVertexNum(){
+    return mygraph.size();
+}
+
+int graph::getEdgeNum(){
+    int count = 0; 
+    for(int i  = 0 ; i <mygraph.size(); i++){
+        count = count + (mygraph[i]->getCount()-1);
+    }
+
+    return count/2; //because it is undirected
+}
+
 //QUESTION IS IT OK TO USE OTHER CLASS THAT I DIDNT MAKE LIKE c++ stack or queue class
 void graph::dfs(int id){
     bool found = false;
@@ -237,7 +250,6 @@ void graph::clearGraph(){
     for(int i = 0 ; i <mygraph.size(); i++){
         mygraph[i]->clearList();
     }
-
 }
 
 
