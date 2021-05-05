@@ -6,6 +6,11 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 
 #include "graph.h"
 
+
+#include <stack>
+
+using std::stack;
+
 graph::graph(){
 }
 
@@ -150,13 +155,50 @@ bool graph::isEmpty(){
 bool graph::exists(int id){
     bool exist = false;
     for(int i= 0; i <mygraph.size(); i++){
-        //if(mygraph[i])
+        if(mygraph[i]->exists(id)){
+            exist = true;
+        }
     }
     return exist;
 
 }
 
-void graph:: dfs(){
+//QUESTION IS IT OK TO USE OTHER CLASS THAT I DIDNT MAKE LIKE c++ stack or queue class
+void graph::dfs(int id){
+    bool found = false;
+    bool visited [mygraph.size()];
+    Data storage;
+    int store = id;
+    stack <int> myStack;
+
+    for(int i = 0; i<mygraph.size(); i++){
+        visited[i] = false;
+        if(mygraph[i]->getHeadId() == store){
+            mygraph[i]->getNode(store, &storage);
+            found = true;
+        }
+    }
+    if(found == true){
+        myStack.push(storage.id); //adding the first data
+        while(!myStack.empty()){
+            store = myStack.top();
+            myStack.pop();
+            if(visited[getPos(store)] == false){
+                cout << store << " ";
+                visited[getPos(store)] = true;
+            }
+            for(int i = 0 ; i<=(mygraph[getPos(store)]->getCount())-1; i++){
+                id = mygraph[getPos(store)]->getNodeId(i);//stores the id of the index given (i)
+                if(visited[getPos(id)]==false){
+                    myStack.push(id);
+                }
+            }
+        }
+    }
+}
+
+
+void graph:: printVisualization(){
     for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
         mygraph[i]->printList();
@@ -164,5 +206,17 @@ void graph:: dfs(){
     }
 }
 
+
+
+
+int graph::getPos(int id){
+    int pos = -1;
+    for(int i = 0 ; i < mygraph.size(); i++){
+        if(mygraph[i]->getHeadId()==id){
+            pos = i;
+        }
+    }
+    return pos;
+}
 
 

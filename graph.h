@@ -38,13 +38,14 @@ class graph{
         // checks if an id exists
         int getVertexNum();
         int getEdgeNum();
-        void dfs();
-        void bfs();
+        void dfs(int id);
+        //dfs with picking the higher id
+        void bfs(int id);
         void printVisualization();
         void clearGraph();
         
     private:
-        bool createVertex(int id, string information, int weight);
+        int getPos(int id);
         vector <linkedList*> mygraph; // vector containing linkedList
 };
 #endif
