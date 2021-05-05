@@ -16,7 +16,7 @@ linkedList::~linkedList(){
     clearList();
 }
 
-bool linkedList::addNode(int id, string& data, int weight){
+bool linkedList::addNode(int id, string& data, int weight){ //adds smallest to largest
     bool success = false;
     bool duplicate = false;
     if(head == NULL){
@@ -27,10 +27,17 @@ bool linkedList::addNode(int id, string& data, int weight){
         while(current!=NULL && success == false && duplicate == false){
             if(id == current->data.id){
                 duplicate = true;
+            }else if(current->next!=NULL){
+                if(id>current->data.id && id<current->next->data.id){
+                    addMiddle(id, data, weight, current);
+                    success = true;
+                } else if(id<current->next->data.id && current == head){
+                    addMiddle(id, data, weight, current);
+                }
             } else if(current->next==NULL){
                 addTail(id, data, weight, current);
-                success = true;           
-            }
+                success = true; 
+            }  
             current = current->next;  
         }
     }
@@ -97,8 +104,8 @@ void linkedList::printList(){
 
 int linkedList::getCount(){
     int count = 0;
+    Node* current = head;
     if(head != NULL){
-        Node* current = head;
         while(current != NULL){
             count++;
             current = current->next;
@@ -149,12 +156,13 @@ int linkedList::getHeadId(){
 int linkedList::getNodeId(int pos){
     int id = -1;
     int traverse = 0;
-        if(head!=NULL){
+    if(head!=NULL){
         Node* current = head;
         while(current!=NULL){
-            if(traverse ==pos){
+            if(traverse == pos){
                 id = current->data.id;
             }
+            traverse++;
             current = current->next;
         }
     }
@@ -170,6 +178,16 @@ void linkedList::addTail(int id, string& data, int weight, Node* current){
     temp->data.weight = weight;
 
     temp->next = NULL;
+    current->next = temp;
+}
+
+void linkedList::addMiddle(int id, string& data, int weight, Node*current){
+    Node* temp;
+    temp = new Node;
+    temp->data.id = id;
+    temp->data.information = data;
+    temp->data.weight = weight;
+    temp->next = current->next;
     current->next = temp;
 }
 
