@@ -45,6 +45,7 @@ class graph{
         void dfs(int id);
         //dfs with picking the higher id
         void bfs(int id);
+        //bfs picking the lower id
         void printVisualization();
         void clearGraph();
         

@@ -10,7 +10,7 @@ graph::graph(){
 }
 
 graph::~graph(){
-    //clearGraph();
+    clearGraph();
 }
 
 
@@ -233,7 +233,12 @@ void graph:: printVisualization(){
     }
 }
 
+void graph::clearGraph(){
+    for(int i = 0 ; i <mygraph.size(); i++){
+        mygraph[i]->clearList();
+    }
 
+}
 
 
 int graph::getPos(int id){
