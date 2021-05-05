@@ -3,58 +3,44 @@ Name: Nathan Lu
 COSC 2436
 Purpose: To create a bi-directional or undirected graph that is weighted, using linkedlists, queues, stacks, and vectors. An adjancency list is used to implement the structure.
 */
-
 #include "stack.h"
 
 Stack::Stack(int size){
-    stacksize = size;
-    top = -1;
+    myStack.reserve(size);
 }
 
 Stack::~Stack(){
-    delete [] myStack;
 }
 
-bool Stack::push(int id, string info){
+bool Stack::push(int id){
     bool valid = false;
-    if (top < stacksize - 1 && id > 0 && !info.empty()){
-        Data *myStruct = new Data;
-        myStruct->id = id;
-        myStruct->information = info;
-        top++;
-        myStack[top] = *myStruct;
-        valid = true;
+    Data data;
+    
+    if (id > 0){
+        myStack.push_back(id);
     }
-    return valid;  
+    return valid;   
 }
 
-bool Stack::pop(Data &stackData){
+bool Stack::pop(int &id){
     bool popped = false;
-    if(top != -1){
-        stackData.information = myStack[top].information;
-        stackData.id = myStack[top].id;
-        delete &myStack[top];
-        top--;
+    if(myStack.size() != 0){
+        int id = myStack.back();
+        myStack.pop_back();
         popped = true;
-    }
+    }  
     return popped;
 }
 
-bool Stack::peek(Data &stackData){
+bool Stack::peek(int &id){
     bool peeked = false;
-    if(top != -1){
-        stackData.information = myStack[top].information;
-        stackData.id = myStack[top].id;
+    if(myStack.size() != 0 ){
+        id = myStack.back();
         peeked = true;
     }
     return peeked;
 }
 
 bool Stack::isEmpty(){
-    bool empty = true;
-    if(top >=0){
-        empty = false;
-    }
-    return empty;
+    return myStack.empty();
 }
-
