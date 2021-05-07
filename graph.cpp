@@ -38,12 +38,11 @@ bool graph::addVertex(int weight, int id, string info, int id1, int id2){
                 }
             }
         }
-
         if(id2 == -1 && pos1 != -1 && duplicate == false){
             mygraph[pos1]->getNode(id1, &storage1);
             temp->addNode(id, info, weight);
             temp->addNode(storage1.id, storage1.information, storage1.weight);
-            
+
             mygraph.push_back(temp);
             mygraph[pos1]->addNode(id, info, weight);
             success = true;
@@ -239,6 +238,7 @@ void graph::bfs(int id){
 }
 
 void graph::printVisualization(){
+    /*
     int id = -1;
     if(mygraph.size()!=0){
         id = mygraph[0]->getNodeId(0);
@@ -276,13 +276,12 @@ void graph::printVisualization(){
             }
         }
     }
-    /*
+    */
     for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
         mygraph[i]->printList();
         cout << endl;
     }
-    */
 }
 
 void graph::clearGraph(){

@@ -42,6 +42,8 @@ class graph{
         // returns number of vertices
         int getEdgeNum();
         //returns number of edges
+        int getVertex();
+        //returns the first vertex it finds in the graph, useful for BFS and DFS
         void dfs(int id);
         //dfs with picking the higher id
         void bfs(int id);

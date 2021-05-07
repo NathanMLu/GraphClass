@@ -10,7 +10,8 @@ int main(){
     //declaring random seed and arrays for id and data
     srand(time(NULL));
     int size = (rand() % (TESTCASEOFFSET + 1)) + TESTCASEMIN;
-    cout << "size is " << size << endl;
+    int r1;
+    int r2;
     int ids[size];
     int weights[size];
     char *data[size];
@@ -20,7 +21,8 @@ int main(){
 
     //generating test cases
     makeTestCases(ids, weights, data, size);
-    cout << "TEST CASES ARE MADE" << endl;
+    cout << "----------------------------------------------" << endl;
+    cout << "\nMAKING TEST CASES!!! \n\n" << endl;
     displayTestCases(ids, weights, data, size);
 
     //creating graph
@@ -63,18 +65,63 @@ int main(){
         cout << "remove edge failed!" << endl;
     }
 
-    //filling graph
-    for(int i = 1; i < 5; i++){
-        int r1 = (rand() % (size-1)) + 1;
-        int r2 = (rand() % size-1) + 1;
-        cout << "\nAdding edge between " << ids[r1] << " and " << ids[r2] << "... ";
-        if(g.addEdge(weights[r1], ids[r1], data[r1], ids[r2], data[r2])){ //use the weight of the first one
+    //filling graph methodically
+    r1 = 1;
+    cout << "----------------------------------------------" << endl;
+    cout << "\nFILLING THE GRAPH METHODICALLY!!! \n\n";
+    for(int i = 0; i < size/2; i++){
+        cout << "\nAdding edge between " << ids[i] << " and " << ids[r1] << "... ";
+        if(g.addEdge(weights[i], ids[i], data[i], ids[r1], data[r1])){ //use the weight of the first one
+            cout << "added!" << endl;
+        }  else {
+            cout << "failed!" << endl;
+        }
+        r1++;
+    }
+    g.printVisualization();
+    r1 = size-2;
+    for(int i = 0; i < size-1; i++){
+        cout << "\nAdding vertex " << ids[i] << " between " << ids[r1] << " and " << ids[r1+1] << "... ";
+        if(g.addVertex(weights[i], ids[i], data[i], ids[r1], ids[r1+1])){ //use the weight of the first one
+            cout << "added!" << endl;
+        }  else {
+            cout << "failed!" << endl;
+        }
+        r1--;
+    }
+
+    g.printVisualization();
+    cout << "----------------------------------------------" << endl;
+    cout << "\nRANDOMLY FILLING THE GRAPH!!! \n\n\n";
+    //randomly adding elements to the graph
+
+    for(int i = 0; i < rand()%size; i++){
+        r1 = (rand()%size);
+        cout << "\nAdding edge between " << ids[i] << " and " << ids[r1] << "... ";
+        if(g.addEdge(weights[i], ids[i], data[i], ids[r1], data[r1])){ //use the weight of the first one
             cout << "added!" << endl;
         }  else {
             cout << "failed!" << endl;
         }
     }
-    g.bfs(ids[]);
+    g.printVisualization();
+    for(int i = 0; i < rand()%size; i++){
+        r1 = (rand()%size);
+        r2 = (rand()%size);
+        cout << "\nAdding vertex " << ids[i] << " between " << ids[r1] << " and " << ids[r2] << "... ";
+        if(g.addVertex(weights[i], ids[i], data[i], ids[r1], ids[r2])){ //use the weight of the first one
+            cout << "added!" << endl;
+        }  else {
+            cout << "failed!" << endl;
+        }
+    }
+    
+
+    
+
+
+
+    //g.bfs(ids[0]);
     g.printVisualization();
     return 0;
 }
