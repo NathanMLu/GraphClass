@@ -290,6 +290,7 @@ void graph::clearGraph(){
             mygraph[i]->clearList();
         }
     }
+    mygraph.clear();
 }
 
 int graph::getVertex(){
