@@ -159,7 +159,18 @@ int main(){
     } else {
         cout << "failed!" << endl;
     }
-
+    cout << "----------------------------------------------" << endl;
+    cout << "\nFILLING GRAPH!!! \n\n"; 
+       
+    for(int i  = 0; i < size; i++){
+        r1 = rand() %size;
+        cout << "\nAdding edge between " << ids[i] << " and " << ids[r1] << "... ";
+        if(g.addEdge(weights[i], ids[i], data[i], ids[r1], data[r1])){ //use the weight of the first one
+            cout << "added!" << endl;
+        }  else {
+            cout << "failed!" << endl;
+        }
+    }
     cout << "----------------------------------------------" << endl;
     cout << "\nRANDOMLY TESTING ALL METHODS!!! \n\n";    
     for(int i = 0 ; i < 40; i++){
@@ -241,7 +252,40 @@ int main(){
             cout << "there is a problem with random!" << endl;
         }
     }
-    g.printVisualization();
+    cout << "----------------------------------------------" << endl;
+    cout << "\nCLEARING THE GRAPH!!! \n\n";  
+    g.clearGraph();  
+    cout << "the graph has been cleared!" << endl;
+    cout << "----------------------------------------------" << endl;
+    cout << "\nTESTING THE GRAPH WITH BAD DATA!!! \n\n";
+    for(int i = 0; i <size; i++){
+        r1 = size-((rand()%3)+1);
+        r2 = size-((rand()%3)+1);
+        r3 = size-((rand()%3)+1);
+        cout << "\nAdding vertex " << ids[r1] << " between " << ids[r2] << " and " << ids[r3] << "... ";
+        if(g.addVertex(weights[r1], ids[r1], data[r1], ids[r2], ids[r3])){ //use the weight of the first one
+            cout << "added!" << endl;
+        } else {
+            cout << "failed!" << endl;
+        }
+        cout << "\nAdding edge between " << ids[r1] << " and " << ids[r2] << "... ";
+        if(g.addEdge(weights[r1], ids[r1], data[r1], ids[r2], data[r2])){ //use the weight of the first one
+            cout << "added!" << endl;
+        } else {
+            cout << "failed!" << endl;
+        }
+    }
+    cout << "----------------------------------------------" << endl;
+    cout << "\nCLEARING LIST MANUALLY!!! \n\n";
+    for(int i = 0; i < size; i++){
+        cout << "\nDeleting vertex " << ids[i] << "... ";
+        if(g.removeVertex(ids[i])){
+            cout << "removed!" << endl;
+        } else {
+            cout << "failed!" << endl;
+        }
+    }
+
 
     
 
