@@ -10,8 +10,7 @@ int main(){
     //declaring random seed and arrays for id and data
     srand(time(NULL));
     int size = (rand() % (TESTCASEOFFSET + 1)) + TESTCASEMIN;
-    int r1;
-    int r2;
+    int r1, r2, r3, r4;
     int ids[size];
     int weights[size];
     char *data[size];
@@ -51,18 +50,18 @@ int main(){
         cout << "does not exist!" << endl;
     }
 
-    cout << "\nRemoving vertex " << ids[0] << " from empty graph... ";
+    cout << "\nDeleting vertex " << ids[0] << "... ";
     if(g.removeVertex(ids[0])){
-        cout << "removed vertex!" << endl;
+        cout << "removed!" << endl;
     } else {
-        cout << "remove vertex failed!" << endl;
+        cout << "failed!" << endl;
     }
 
-    cout << "\nRemoving edge between " << ids[0] << " and " << ids[1] << " from empty graph... ";
+    cout << "\nRemoving edge between " << ids[0] << " and " << ids[1] << "... ";
     if(g.removeEdge(ids[0], ids[1])){
-        cout << "removed edge!" << endl;
+        cout << "removed!" << endl;
     } else {
-        cout << "remove edge failed!" << endl;
+        cout << "failed!" << endl;
     }
 
     //filling graph methodically
@@ -78,7 +77,6 @@ int main(){
         }
         r1++;
     }
-    g.printVisualization();
     r1 = size-2;
     for(int i = 0; i < size-1; i++){
         cout << "\nAdding vertex " << ids[i] << " between " << ids[r1] << " and " << ids[r1+1] << "... ";
@@ -89,10 +87,8 @@ int main(){
         }
         r1--;
     }
-
-    g.printVisualization();
     cout << "----------------------------------------------" << endl;
-    cout << "\nRANDOMLY FILLING THE GRAPH!!! \n\n\n";
+    cout << "\nRANDOMLY FILLING THE GRAPH!!! \n\n";
     //randomly adding elements to the graph
 
     for(int i = 0; i < rand()%size; i++){
@@ -104,7 +100,6 @@ int main(){
             cout << "failed!" << endl;
         }
     }
-    g.printVisualization();
     for(int i = 0; i < rand()%size; i++){
         r1 = (rand()%size);
         r2 = (rand()%size);
@@ -115,13 +110,142 @@ int main(){
             cout << "failed!" << endl;
         }
     }
-    
+    cout << "----------------------------------------------" << endl;
+    cout << "\nDELETING HALF OF THE EDGES FROM THE GRAPH!!! \n\n";
+    r1 = g.getVertexNum()/2;
+    for(int i = 0; i < r1; i++){
+        cout << "\nDeleting vertex " << ids[i] << "... ";
+        if(g.removeVertex(ids[i])){ //use the weight of the first one
+            cout << "deleted!" << endl;
+        }  else {
+            cout << "failed!" << endl;
+        }
+    }
 
-    
+    cout << "----------------------------------------------" << endl;
+    cout << "\nPERFORMING BASIC TESTS!!! \n\n";
 
+    cout << "Testing isEmpty on graph... ";
+    if(g.isEmpty()){
+        cout << "the graph is empty!" << endl;
+    } else { 
+        cout << "the graph is not empty!" << endl;
+    }
 
+    cout << "\nTesting getVertexNum on graph... " << g.getVertexNum()<<endl;
+    cout << "\nTesting getEdgeNum on graph... " << g.getEdgeNum()<<endl;
+    cout << "\nTraversing graph using DFS..." << endl;
+    g.dfs(g.getVertex());
+    cout << "\n\nTraversing graph using BFS..." << endl;
+    g.bfs(g.getVertex());
 
-    //g.bfs(ids[0]);
+    cout << "\n\nChecking if " << ids[0] << " exists in graph... ";
+    if(g.exists(ids[0])){
+        cout << "exists!" << endl;
+    } else { 
+        cout << "does not exist!" << endl;
+    }
+
+    cout << "\nDeleting vertex " << ids[0] << "... ";
+    if(g.removeVertex(ids[0])){
+        cout << "deleted!" << endl;
+    } else {
+        cout << "failed!" << endl;
+    }
+
+    cout << "\nDeleting edge between " << ids[0] << " and " << ids[1] <<"... ";
+    if(g.removeEdge(ids[0], ids[1])){
+        cout << "removed!" << endl;
+    } else {
+        cout << "failed!" << endl;
+    }
+
+    cout << "----------------------------------------------" << endl;
+    cout << "\nRANDOMLY TESTING ALL METHODS!!! \n\n";    
+    for(int i = 0 ; i < 40; i++){
+        r1 = (rand() % 10);
+        if(r1 == 0){
+            //addVertex
+            r2 = rand() %size;
+            r3 = rand() %size;
+            r4 = rand() %size;
+            cout << "\nAdding vertex " << ids[r2] << " between " << ids[r3] << " and " << ids[r4] << "... ";
+            if(g.addVertex(weights[r2], ids[r2], data[r2], ids[r3], ids[r4])){ //use the weight of the first one
+                cout << "added!" << endl;
+            } else {
+                cout << "failed!" << endl;
+            }
+        } else if (r1 == 1){
+            //addEdge
+            r2 = rand() %size;
+            r3 = rand() %size;
+            cout << "\nAdding edge between " << ids[r2] << " and " << ids[r3] << "... ";
+            if(g.addEdge(weights[r2], ids[r2], data[r2], ids[r3], data[r3])){ //use the weight of the first one
+                cout << "added!" << endl;
+            } else {
+                cout << "failed!" << endl;
+            }
+        } else if (r1 == 2){
+            //removeVertex
+            r2 = rand() %size;
+            cout << "\nDeleting vertex " << ids[r2] << "... ";
+            if(g.removeVertex(ids[r2])){
+                cout << "removed!" << endl;
+            } else {
+                cout << "failed!" << endl;
+            }
+        } else if (r1 == 3){
+            //removeEdge
+            r2 = rand() %size;
+            r3 = rand() %size;
+            cout << "\nDeleting edge between " << ids[r2] << " and " << ids[r3] <<"... ";
+            if(g.removeEdge(ids[r2], ids[r3])){
+                cout << "removed!" << endl;
+            } else {
+                cout << "failed!" << endl;
+            }
+        } else if (r1 == 4){
+            //isEmpty
+            cout << "\nTesting isEmpty on graph... ";
+            if(g.isEmpty()){
+                cout << "the graph is empty!" << endl;
+            } else { 
+                cout << "the graph is not empty!" << endl;
+            }
+        } else if (r1 == 5){
+            //exists
+            r2 = rand() % size;
+            cout << "\nChecking if " << ids[r2] << " exists in graph... ";
+            if(g.exists(ids[r2])){
+                cout << "exists!" << endl;
+            } else { 
+                cout << "does not exist!" << endl;
+            }
+        } else if (r1 == 6){
+            //vertexNum
+            cout << "\nThe number of vertices is " << g.getVertexNum() << endl;
+        } else if (r1 == 7){
+            //edgeNum
+            cout << "\nThe number of edges is " << g.getEdgeNum() << endl;
+        } else if (r1 == 8){
+            //dfs
+            cout << "\nTraversing the graph using DFS: "; 
+            g.dfs(g.getVertex());
+            cout << endl;
+        } else if (r1 == 9){
+            //bfs
+            cout << "\nTraversing the graph using BFS: "; 
+            g.bfs(g.getVertex());
+            cout << endl;
+        } else {
+            cout << "there is a problem with random!" << endl;
+        }
+    }
     g.printVisualization();
+
+    
+
+
+
     return 0;
 }

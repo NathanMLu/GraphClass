@@ -287,9 +287,17 @@ void graph::printVisualization(){
 void graph::clearGraph(){
     for(int i = 0 ; i <mygraph.size(); i++){
         mygraph[i]->clearList();
+        mygraph[i] = NULL;
     }
 }
 
+int graph::getVertex(){
+    int num = -1;
+    if(mygraph.size()!=0){
+        num = mygraph[0]->getHeadId();
+    }
+    return num;
+}
 
 int graph::getPos(int id){
     int pos = -1;
@@ -300,5 +308,6 @@ int graph::getPos(int id){
     }
     return pos;
 }
+
 
 
