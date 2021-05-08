@@ -7,10 +7,6 @@ Purpose: To create a bi-directional or undirected graph that is weighted, using 
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include <time.h>
 #include "graph.h"
 #include "functions.h"
 
