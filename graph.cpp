@@ -238,45 +238,6 @@ void graph::bfs(int id){
 }
 
 void graph::printVisualization(){
-    /*
-    int id = -1;
-    if(mygraph.size()!=0){
-        id = mygraph[0]->getNodeId(0);
-    }
-    bool found = false;
-    bool visited [mygraph.size()];
-    Data storage;
-    int store = id;
-    stack <int> myStack;
-
-
-    bool first = true;
-
-    for(int i = 0; i<mygraph.size(); i++){
-        visited[i] = false;
-        if(mygraph[i]->getHeadId() == store){
-            mygraph[i]->getNode(store, &storage);
-            found = true;
-        }
-    }
-    if(found == true){
-        myStack.push(storage.id); //adding the first data
-        while(!myStack.empty()){
-            store = myStack.top();
-            myStack.pop();
-            if(visited[getPos(store)] == false){
-                cout << store << "--";
-                visited[getPos(store)] = true;
-            }
-            for(int i = 0 ; i<=(mygraph[getPos(store)]->getCount())-1; i++){
-                id = mygraph[getPos(store)]->getNodeId(i);//stores the id of the index given (i)
-                if(visited[getPos(id)]==false){
-                    myStack.push(id);
-                }
-            }
-        }
-    }
-    */
     for(int i = 0; i<mygraph.size(); i++){
         cout << endl;
         mygraph[i]->printList();
