@@ -169,6 +169,22 @@ int linkedList::getNodeId(int pos){
     }
     return id;
 }
+
+int linkedList::getNodeWeight(int pos){
+    int weight = -1;
+    int traverse = 0;
+    if(head!=NULL){
+        Node* current = head;
+        while(current!=NULL){
+            if(traverse == pos){
+                weight = current->data.id;
+            }
+            traverse++;
+            current = current->next;
+        }
+    }
+    return weight;
+}
 //PRIVATE METHODS BEGIN HERE
 
 void linkedList::addTail(int id, string& data, int weight, Node* current){
