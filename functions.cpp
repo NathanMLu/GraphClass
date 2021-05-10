@@ -37,7 +37,6 @@ void makeTestCases(int *ids, int *weights, char** data, int size){
     for(int i=0; i <bad.size(); i++){
         data[size-1][i] = bad.at(i);
     }
-
 }
 
 void displayTestCases(int* ids, int* weights, char** data, int size){
