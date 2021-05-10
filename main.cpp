@@ -19,7 +19,7 @@ int main(){
     }
 
     //generating test cases
-    for(int i  = 0 ; i < 3; i++){ //tests the entire thing 3 times
+    for(int i  = 0 ; i < 1; i++){ //tests the entire thing 3 times
         cout << "STARTING NEW ROUND OF TESTING!!! " << endl;
         makeTestCases(ids, weights, data, size);
         cout << "----------------------------------------------" << endl;
@@ -67,9 +67,10 @@ int main(){
         }
     
         //filling graph methodically
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         r1 = 1;
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
         cout << "----------------------------------------------" << endl;
         cout << "\nFILLING THE GRAPH METHODICALLY!!! \n\n";
         for(int i = 0; i < size/2; i++){
@@ -81,6 +82,9 @@ int main(){
             }
             r1++;
         }
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         r1 = size-2;
         for(int i = 0; i < size-1; i++){
             cout << "\nAdding vertex " << ids[i] << " between " << ids[r1] << " and " << ids[r1+1] << "... ";
@@ -91,8 +95,9 @@ int main(){
             }
             r1--;
         }
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nRANDOMLY FILLING THE GRAPH!!! \n\n";
         //randomly adding elements to the graph
@@ -106,6 +111,9 @@ int main(){
                 cout << "failed!" << endl;
             }
         }
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         for(int i = 0; i < rand()%size; i++){
             r1 = (rand()%size);
             r2 = (rand()%size);
@@ -116,8 +124,9 @@ int main(){
                 cout << "failed!" << endl;
             }
         }
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nDELETING HALF OF THE EDGES FROM THE GRAPH!!! \n\n";
         r1 = g.getVertexNum()/2;
@@ -129,8 +138,9 @@ int main(){
                 cout << "failed!" << endl;
             }
         }
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nPERFORMING BASIC TESTS!!! \n\n";
 
@@ -168,8 +178,9 @@ int main(){
         } else {
             cout << "failed!" << endl;
         }
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nFILLING GRAPH!!! \n\n"; 
         
@@ -182,6 +193,9 @@ int main(){
                 cout << "failed!" << endl;
             }
         }
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         r1 = size-2;
         for(int i = 0; i < size-1; i++){
             cout << "\nAdding vertex " << ids[i] << " between " << ids[r1] << " and " << ids[r1+1] << "... ";
@@ -192,6 +206,9 @@ int main(){
             }
             r1--;
         }
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nRANDOMLY TESTING ALL METHODS!!! \n\n";    
         for(int i = 0 ; i < 40; i++){
@@ -272,15 +289,17 @@ int main(){
             } else {
                 cout << "there is a problem with random!" << endl;
             }
-            cout << "\nPrinting the Adjacency list representation... " << endl;
-            g.printVisualization();
+            cout << "\nTraversing the graph using BFS: "; 
+            g.bfs(g.getVertex());
+            cout << endl;
         }
         cout << "----------------------------------------------" << endl;
         cout << "\nCLEARING THE GRAPH!!! \n\n";  
         g.clearGraph();  
         cout << "the graph has been cleared!" << endl;
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nTESTING THE GRAPH WITH BAD DATA!!! \n\n";
         for(int i = 0; i <size; i++){
@@ -300,8 +319,9 @@ int main(){
                 cout << "failed!" << endl;
             }
         }
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nCLEARING LIST MANUALLY!!! \n\n";
         for(int i = 0; i < size; i++){
@@ -312,8 +332,9 @@ int main(){
                 cout << "failed!" << endl;
             }
         }
-        cout << "\nPrinting the Adjacency list representation... " << endl;
-        g.printVisualization();
+        cout << "\nTraversing the graph using BFS: "; 
+        g.bfs(g.getVertex());
+        cout << endl;
         cout << "----------------------------------------------" << endl;
         cout << "\nTESTING IS DONE!!! \n\n";
     }
