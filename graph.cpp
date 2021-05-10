@@ -171,6 +171,7 @@ int graph::getEdgeNum(){
 
 void graph::dfs(int id){
     bool found = false;
+    int total = 0;
     bool visited [mygraph.size()];
     Data storage;
     int store = id;
@@ -184,6 +185,7 @@ void graph::dfs(int id){
         }
     }
     if(found == true){
+        total = storage.weight;
         myStack.push(storage.id); //adding the first data
         while(!myStack.empty()){
             store = myStack.top();
@@ -195,15 +197,18 @@ void graph::dfs(int id){
             for(int i = 0 ; i<=(mygraph[getPos(store)]->getCount())-1; i++){
                 id = mygraph[getPos(store)]->getNodeId(i);//stores the id of the index given (i)
                 if(visited[getPos(id)]==false){
+                    total = total+mygraph[getPos(store)]->getNodeWeight(i);
                     myStack.push(id);
                 }
             }
         }
     }
+    cout << "\nthe total weight of the traversal is " << total << endl;
 }
 
 void graph::bfs(int id){
     bool found = false;
+    int total = 0;
     bool visited [mygraph.size()];
     Data storage;
     int store = id;
@@ -217,6 +222,7 @@ void graph::bfs(int id){
         }
     }
     if(found == true){
+        total = storage.weight;
         myQueue.push(storage.id); //adding the first data
         while(!myQueue.empty()){
             store = myQueue.front();
@@ -228,12 +234,15 @@ void graph::bfs(int id){
             for(int i = 0 ; i<=(mygraph[getPos(store)]->getCount())-1; i++){
                 id = mygraph[getPos(store)]->getNodeId(i);//stores the id of the index given (i)
                 if(visited[getPos(id)]==false){
+                    total = total+mygraph[getPos(store)]->getNodeWeight(i);
                     myQueue.push(id);
                 }
             }
         }
     }
+    cout << "\nthe total weight of the traversal is " << total << endl;
 }
+
 
 void graph::clearGraph(){
     for(int i = 0 ; i <mygraph.size(); i++){
