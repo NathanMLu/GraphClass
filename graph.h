@@ -48,8 +48,6 @@ class graph{
         //dfs with picking the higher id
         void bfs(int id);
         //bfs picking the lower id
-        void printVisualization();
-        //prints visualization of the linkedLists
         void clearGraph();
         //clears the graph
         
